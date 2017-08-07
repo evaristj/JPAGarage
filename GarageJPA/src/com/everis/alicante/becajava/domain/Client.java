@@ -2,6 +2,7 @@ package com.everis.alicante.becajava.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Set;
 
 
@@ -10,45 +11,39 @@ import java.util.Set;
  * 
  */
 @Entity
-@Table(name="client")
 @NamedQuery(name="Client.findAll", query="SELECT c FROM Client c")
 public class Client implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
-	private int idclient;
+	private int idCLIENT;
 
-	@Column(nullable=false, length=255)
 	private String name;
 
-	@Column(nullable=false, length=255)
 	private String nif;
 
-	@Column(nullable=false, length=255)
 	private String surname;
 
-	@Column(nullable=false, length=255)
 	private String telephone;
 
 	//bi-directional many-to-one association to Booking
-	@OneToMany(mappedBy="client", cascade={CascadeType.PERSIST}, fetch=FetchType.EAGER)
+	@OneToMany(mappedBy="client", cascade={CascadeType.ALL}, fetch=FetchType.EAGER)
 	private Set<Booking> bookings;
 
 	//bi-directional many-to-one association to Vehicle
-	@OneToMany(mappedBy="client", fetch=FetchType.EAGER ,cascade={CascadeType.ALL})
+	@OneToMany(mappedBy="client", fetch=FetchType.EAGER,cascade={CascadeType.ALL})
 	private Set<Vehicle> vehicles;
 
 	public Client() {
 	}
 
-	public int getIdclient() {
-		return this.idclient;
+	public int getIdCLIENT() {
+		return this.idCLIENT;
 	}
 
-	public void setIdclient(int idclient) {
-		this.idclient = idclient;
+	public void setIdCLIENT(int idCLIENT) {
+		this.idCLIENT = idCLIENT;
 	}
 
 	public String getName() {

@@ -1,5 +1,6 @@
 package com.everis.alicante.becajava.test;
 
+import java.util.Calendar;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -8,7 +9,9 @@ import javax.persistence.Persistence;
 
 import org.apache.log4j.Logger;
 
+import com.everis.alicante.becajava.domain.Booking;
 import com.everis.alicante.becajava.domain.Client;
+import com.everis.alicante.becajava.domain.Parkingplace;
 import com.everis.alicante.becajava.domain.Vehicle;
 import com.everis.alicante.becajava.implementaciones.BookingDAOJPAImpl;
 import com.everis.alicante.becajava.implementaciones.ClientDAOJPAImpl;
@@ -48,45 +51,50 @@ public class Test {
 		
 		Client client= new Client();
 		
-		client.setName("Miguel");		
-		client.setSurname("Martinez");
+		client.setName("Paquito");		
+		client.setSurname("Chuletas");
 		client.setNif("45645645Y");
-		client.setTelephone("787676767");
+		client.setTelephone("610616980");
 		
 		Set<Vehicle> vehicles= new HashSet<Vehicle>();
 		
 		
 		Vehicle vehicle= new Vehicle();
-		vehicle.setVehiclemodel("coche");
-		vehicle.setVehicleplate("4455 ghx");
+		vehicle.setVehicleModel("moto");
+		vehicle.setVehiclePlate("4455-ghx");
 		vehicle.setClient(client);
 		
 		vehicles.add(vehicle);	
 		
 		client.setVehicles(vehicles);;
 		
-		daoClient.create(client);
+//		daoClient.create(client);
 		
+		// crear reserva con todo incluido
 		
-//		Parkingplace place= daoParking.readById(1);
-//		
-//		Booking booking= new Booking();
-//		booking.setBookingdate(Calendar.getInstance().getTime());
-//		booking.setParkingplace(place);
-//		
+			Parkingplace place= daoParking.readById(3);
+//			place.setParkingState((byte) 1);
+			
+			Booking booking= new Booking();
+			booking.setBookingdate(Calendar.getInstance().getTime());
+			booking.setParkingplace(place);
+			
+			Set<Booking> bookings = new HashSet<>();
+			bookings.add(booking);
+		
 //		Set bookings=new HashSet<>();
 //		bookings.add(booking);
-//		
-//		vehicle.setBookings(bookings);
-//		client.setBookings(bookings);
-//		place.setBookings(bookings);
-//		
-//		booking.setVehicle(vehicle);
-//		booking.setClient(client);
-//		booking.setParkingplace(place);	
-//		
-//		
-//		service.create(booking);
+		
+			vehicle.setBookings(bookings);
+			client.setBookings(bookings);
+			place.setBookings(bookings);
+			
+			booking.setVehicle(vehicle);
+			booking.setClient(client);
+			booking.setParkingplace(place);	
+		
+		
+			service.create(booking);
 		
 		
 		logger.info(" END TEST *************************************************** ");
@@ -96,7 +104,7 @@ public class Test {
 	
 		static EntityManager createEntityMananger(){
 		
-		return Persistence.createEntityManagerFactory("JPA_Test").createEntityManager();
+		return Persistence.createEntityManagerFactory("GARAGE_JPA").createEntityManager();
 		
 	}
 

@@ -38,7 +38,7 @@ public class ClientServiceImpl implements ClientService {
 	@Override
 	public Client findCliente(Client client) {
 		
-		return clientDao.readById(client.getIdclient());
+		return clientDao.readById(client.getIdCLIENT());
 	}
 
 	

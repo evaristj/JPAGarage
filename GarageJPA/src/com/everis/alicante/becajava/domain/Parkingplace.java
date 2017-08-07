@@ -2,6 +2,7 @@ package com.everis.alicante.becajava.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Set;
 
 
@@ -10,27 +11,21 @@ import java.util.Set;
  * 
  */
 @Entity
-@Table(name="parkingplace")
 @NamedQuery(name="Parkingplace.findAll", query="SELECT p FROM Parkingplace p")
 public class Parkingplace implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
-	private int idparkingplace;
+	private int idParkingPlace;
 
-	@Column(nullable=false)
-	private int parkingnumber;
+	private int parkingNumber;
 
-	@Column(nullable=false)
-	private double parkingprize;
+	private double parkingPrize;
 
-	@Column(nullable=false)
-	private double parkingsize;
+	private double parkingSize;
 
-	@Column(nullable=false)
-	private byte parkingstate;
+	private byte parkingState;
 
 	//bi-directional many-to-one association to Booking
 	@OneToMany(mappedBy="parkingplace", fetch=FetchType.EAGER)
@@ -39,44 +34,44 @@ public class Parkingplace implements Serializable {
 	public Parkingplace() {
 	}
 
-	public int getIdparkingplace() {
-		return this.idparkingplace;
+	public int getIdParkingPlace() {
+		return this.idParkingPlace;
 	}
 
-	public void setIdparkingplace(int idparkingplace) {
-		this.idparkingplace = idparkingplace;
+	public void setIdParkingPlace(int idParkingPlace) {
+		this.idParkingPlace = idParkingPlace;
 	}
 
-	public int getParkingnumber() {
-		return this.parkingnumber;
+	public int getParkingNumber() {
+		return this.parkingNumber;
 	}
 
-	public void setParkingnumber(int parkingnumber) {
-		this.parkingnumber = parkingnumber;
+	public void setParkingNumber(int parkingNumber) {
+		this.parkingNumber = parkingNumber;
 	}
 
-	public double getParkingprize() {
-		return this.parkingprize;
+	public double getParkingPrize() {
+		return this.parkingPrize;
 	}
 
-	public void setParkingprize(double parkingprize) {
-		this.parkingprize = parkingprize;
+	public void setParkingPrize(double parkingPrize) {
+		this.parkingPrize = parkingPrize;
 	}
 
-	public double getParkingsize() {
-		return this.parkingsize;
+	public double getParkingSize() {
+		return this.parkingSize;
 	}
 
-	public void setParkingsize(double parkingsize) {
-		this.parkingsize = parkingsize;
+	public void setParkingSize(double parkingSize) {
+		this.parkingSize = parkingSize;
 	}
 
-	public byte getParkingstate() {
-		return this.parkingstate;
+	public byte getParkingState() {
+		return this.parkingState;
 	}
 
-	public void setParkingstate(byte parkingstate) {
-		this.parkingstate = parkingstate;
+	public void setParkingState(byte parkingState) {
+		this.parkingState = parkingState;
 	}
 
 	public Set<Booking> getBookings() {

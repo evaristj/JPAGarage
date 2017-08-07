@@ -16,7 +16,7 @@ public class Booking implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(unique=true, nullable=false)
 	private int idbooking;
 
@@ -25,7 +25,7 @@ public class Booking implements Serializable {
 	private Date bookingdate;
 
 	//bi-directional many-to-one association to Client
-	@ManyToOne(cascade={CascadeType.PERSIST})
+	@ManyToOne(cascade={CascadeType.ALL})
 	@JoinColumn(name="idClient", nullable=false)
 	private Client client;
 
@@ -35,7 +35,7 @@ public class Booking implements Serializable {
 	private Parkingplace parkingplace;
 
 	//bi-directional many-to-one association to Vehicle
-	@ManyToOne
+	@ManyToOne(cascade={CascadeType.PERSIST})
 	@JoinColumn(name="idVehicle", nullable=false)
 	private Vehicle vehicle;
 

@@ -2,6 +2,7 @@ package com.everis.alicante.becajava.domain;
 
 import java.io.Serializable;
 import javax.persistence.*;
+
 import java.util.Set;
 
 
@@ -10,21 +11,17 @@ import java.util.Set;
  * 
  */
 @Entity
-@Table(name="vehicle")
 @NamedQuery(name="Vehicle.findAll", query="SELECT v FROM Vehicle v")
 public class Vehicle implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column(unique=true, nullable=false)
-	private int idvehicle;
+	private int idVEHICLE;
 
-	@Column(nullable=false, length=255)
-	private String vehiclemodel;
+	private String vehicleModel;
 
-	@Column(nullable=false, length=255)
-	private String vehicleplate;
+	private String vehiclePlate;
 
 	//bi-directional many-to-one association to Booking
 	@OneToMany(mappedBy="vehicle", fetch=FetchType.EAGER)
@@ -38,28 +35,28 @@ public class Vehicle implements Serializable {
 	public Vehicle() {
 	}
 
-	public int getIdvehicle() {
-		return this.idvehicle;
+	public int getIdVEHICLE() {
+		return this.idVEHICLE;
 	}
 
-	public void setIdvehicle(int idvehicle) {
-		this.idvehicle = idvehicle;
+	public void setIdVEHICLE(int idVEHICLE) {
+		this.idVEHICLE = idVEHICLE;
 	}
 
-	public String getVehiclemodel() {
-		return this.vehiclemodel;
+	public String getVehicleModel() {
+		return this.vehicleModel;
 	}
 
-	public void setVehiclemodel(String vehiclemodel) {
-		this.vehiclemodel = vehiclemodel;
+	public void setVehicleModel(String vehicleModel) {
+		this.vehicleModel = vehicleModel;
 	}
 
-	public String getVehicleplate() {
-		return this.vehicleplate;
+	public String getVehiclePlate() {
+		return this.vehiclePlate;
 	}
 
-	public void setVehicleplate(String vehicleplate) {
-		this.vehicleplate = vehicleplate;
+	public void setVehiclePlate(String vehiclePlate) {
+		this.vehiclePlate = vehiclePlate;
 	}
 
 	public Set<Booking> getBookings() {
