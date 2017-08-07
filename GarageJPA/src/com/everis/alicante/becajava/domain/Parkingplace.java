@@ -11,20 +11,26 @@ import java.util.Set;
  * 
  */
 @Entity
+@Table(name="parkingplace")
 @NamedQuery(name="Parkingplace.findAll", query="SELECT p FROM Parkingplace p")
 public class Parkingplace implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(unique=true, nullable=false)
 	private int idParkingPlace;
 
+	@Column(nullable=false)
 	private int parkingNumber;
 
+	@Column(nullable=false)
 	private double parkingPrize;
 
+	@Column(nullable=false)
 	private double parkingSize;
 
+	@Column(nullable=false)
 	private byte parkingState;
 
 	//bi-directional many-to-one association to Booking

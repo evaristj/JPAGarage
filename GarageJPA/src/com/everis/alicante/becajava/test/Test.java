@@ -95,7 +95,7 @@ public class Test {
 		
 		
 			service.create(booking);
-		
+			
 		
 		logger.info(" END TEST *************************************************** ");
 		
