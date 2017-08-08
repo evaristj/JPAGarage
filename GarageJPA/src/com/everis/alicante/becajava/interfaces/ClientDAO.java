@@ -15,6 +15,7 @@ public interface ClientDAO {
 	void delete(Client client);
 	
 	List<Client> findAll();
+	
+	double findImporteByClient(Client client);
 		
-
 }

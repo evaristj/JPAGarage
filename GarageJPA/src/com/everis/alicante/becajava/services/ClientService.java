@@ -16,7 +16,6 @@ public interface ClientService {
 
 	void createClient(Client client, Vehicle vehicle);
 	
-	
-	
+	double getImporteByClient(Client client);
 	
 }

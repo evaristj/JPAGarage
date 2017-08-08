@@ -42,7 +42,10 @@ public class BookingServiceImpl implements BookingService {
 		this.bookingDao = bookingDao;
 	}
 
-
+	public BookingServiceImpl(BookingDAO bookingDao) {
+		super();
+		this.bookingDao = bookingDao;
+	}
 	
 
 }

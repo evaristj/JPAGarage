@@ -16,6 +16,9 @@ public interface ParkingPlaceDAO {
 	void delete(Parkingplace parkingPlace);
 	
 	List<Parkingplace> findAll();
+	
+	int findFreeParkingPlace();
+	List<Parkingplace> findFreeParkingPlaces();
 		
 
 }

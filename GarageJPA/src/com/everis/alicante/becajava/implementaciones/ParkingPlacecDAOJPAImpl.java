@@ -60,6 +60,21 @@ public class ParkingPlacecDAOJPAImpl implements ParkingPlaceDAO{
 		return query.getResultList();
 		
 	}
+
+	@Override
+	public int findFreeParkingPlace() {
+		
+		Query query = em.createNativeQuery("Select idparkingplace from parkingplace where parkingstate=0 order by idparkingplace asc");
+		
+		return (int) query.getResultList().get(0);
+	}
+
+	@Override
+	public List<Parkingplace> findFreeParkingPlaces() {
+		
+		Query query = em.createNativeQuery("Parkingplace.findFreePlaces");
+		return query.getResultList();
+	}
 	
 
 }

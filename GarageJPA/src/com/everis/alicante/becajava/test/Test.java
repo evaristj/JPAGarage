@@ -43,7 +43,7 @@ public class Test {
 		BookingDAO daoBooking=new BookingDAOJPAImpl(em);
 		ParkingPlaceDAO daoParking= new ParkingPlacecDAOJPAImpl(em);
 		
-		BookingServiceImpl service=new BookingServiceImpl();
+		BookingServiceImpl service=new BookingServiceImpl(daoBooking);
 		service.setBookingDao(daoBooking);
 			
 
@@ -81,9 +81,6 @@ public class Test {
 			
 			Set<Booking> bookings = new HashSet<>();
 			bookings.add(booking);
-		
-//		Set bookings=new HashSet<>();
-//		bookings.add(booking);
 		
 			vehicle.setBookings(bookings);
 			client.setBookings(bookings);

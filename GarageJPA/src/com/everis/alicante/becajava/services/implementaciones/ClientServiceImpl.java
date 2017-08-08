@@ -12,13 +12,10 @@ public class ClientServiceImpl implements ClientService {
 	
 	private ClientDAO clientDao;
 	
-	private VehicleDAO vehicleDao;
-
 	@Override
 	public void createClient(Client client , Vehicle vehicle) {
 		
 		clientDao.create(client);		
-		vehicleDao.create(vehicle);
 	}
 
 	@Override
@@ -50,12 +47,15 @@ public class ClientServiceImpl implements ClientService {
 		this.clientDao = clientDao;
 	}
 
-	public VehicleDAO getVehicleDao() {
-		return vehicleDao;
+	public ClientServiceImpl(ClientDAO clientDao) {
+		super();
+		this.clientDao = clientDao;
 	}
+	
+	@Override
+	public double getImporteByClient(Client client) {
 
-	public void setVehicleDao(VehicleDAO vehicleDao) {
-		this.vehicleDao = vehicleDao;
+		return this.clientDao.findImporteByClient(client);
 	}
 
 	

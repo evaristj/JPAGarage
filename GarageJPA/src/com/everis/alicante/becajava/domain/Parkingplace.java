@@ -12,7 +12,10 @@ import java.util.Set;
  */
 @Entity
 @Table(name="parkingplace")
-@NamedQuery(name="Parkingplace.findAll", query="SELECT p FROM Parkingplace p")
+@NamedQueries({
+	@NamedQuery(name="Parkingplace.findAll", query="SELECT p FROM Parkingplace p"),
+	@NamedQuery(name="ParkingPlace.findFreePlaces", query="SELECT p FROM Parkingplace p where p.parkingstate=0")
+})
 public class Parkingplace implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -31,7 +34,7 @@ public class Parkingplace implements Serializable {
 	private double parkingSize;
 
 	@Column(nullable=false)
-	private byte parkingState;
+	private byte parkingstate;
 
 	//bi-directional many-to-one association to Booking
 	@OneToMany(mappedBy="parkingplace", fetch=FetchType.EAGER)
@@ -73,11 +76,11 @@ public class Parkingplace implements Serializable {
 	}
 
 	public byte getParkingState() {
-		return this.parkingState;
+		return this.parkingstate;
 	}
 
 	public void setParkingState(byte parkingState) {
-		this.parkingState = parkingState;
+		this.parkingstate = parkingState;
 	}
 
 	public Set<Booking> getBookings() {
@@ -101,5 +104,12 @@ public class Parkingplace implements Serializable {
 
 		return booking;
 	}
+
+	@Override
+	public String toString() {
+		return "Parkingplace [idParkingPlace=" + idParkingPlace + ", parkingNumber=" + parkingNumber + ", parkingPrize="
+				+ parkingPrize + ", parkingSize=" + parkingSize + "]";
+	}
+	
 
 }
